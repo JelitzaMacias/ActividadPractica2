@@ -1,0 +1,45 @@
+<!-- register.component.html -->
+<div class="login-container">
+  <form>
+    <h2>Registrar</h2>
+    <label for="username">Usuario:</label>
+    <input
+      type="text"
+      [(ngModel)]="usuario.nombre"
+      id="username"
+      name="username"
+      required
+    />
+
+    <label for="password">Contraseña:</label>
+    <input
+      type="password"
+      id="password"
+      [(ngModel)]="usuario.contrasena"
+      name="password"
+      required
+    />
+
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      [(ngModel)]="usuario.correo"
+      name="email"
+      required
+    />
+
+    <button (click)="login()" type="submit">Registrar</button>
+  </form>
+
+  <p>
+    Ya tienes una cuenta?
+    <a
+      routerLink="/login"
+      href="/login"
+      routerLinkActive="active"
+      class="btn btn-info"
+      >Login</a
+    >
+  </p>
+</div>

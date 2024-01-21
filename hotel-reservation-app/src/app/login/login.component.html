@@ -1,0 +1,38 @@
+<!-- login.component.html -->
+<div class="login-container">
+  <form (ngSubmit)="login()">
+    <h2>Login</h2>
+
+    <label for="username">Usuario:</label>
+    <input
+      [(ngModel)]="usuario.correo"
+      type="text"
+      id="username"
+      name="username"
+      required
+    />
+
+    <label for="password">Contraseña:</label>
+    <input
+      [(ngModel)]="usuario.contrasena"
+      type="password"
+      id="password"
+      name="password"
+      required
+    />
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p>
+    No tienes una cuenta?
+    <a
+      routerLink="/register"
+      href="/register"
+      routerLinkActive="active"
+      class="btn btn-info"
+    >
+      Regístrate aquí
+    </a>
+  </p>
+</div>

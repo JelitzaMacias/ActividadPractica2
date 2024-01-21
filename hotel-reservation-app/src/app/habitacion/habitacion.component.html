@@ -1,0 +1,87 @@
+<nav>
+  <ul>
+    <li><a routerLink="/hotel" href="/hotel">Hotel</a></li>
+    <li><a routerLink="/habitacion" href="/habitacion">Habitación</a></li>
+    <li>
+      <a routerLink="/reservaciones" href="/reservaciones">Reservaciones</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container mt-4">
+  <h2>Agregar Habitacion</h2>
+
+  <form (ngSubmit)="agregarHabitacion()" #hotelForm="ngForm">
+    <div class="form-group">
+      <label for="nombre">Numero:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre"
+        name="nombre"
+        [(ngModel)]="habitacion.numero"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="direccion">Precio:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="direccion"
+        name="direccion"
+        [(ngModel)]="habitacion.precio"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="opcionesSelect">Selecciona una opción:</label>
+      <select id="hotel" name="hotel" [(ngModel)]="habitacion.hotel_id">
+        <option *ngFor="let opcion of hoteles" [value]="opcion.id">
+          {{ opcion.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="direccion">Tipo:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="tipo"
+        name="tipo"
+        [(ngModel)]="habitacion.tipo"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Agregar Habitacion</button>
+  </form>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    @for (habitacion of habitaciones; track $index) {
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ habitacion.numero }}</h5>
+          <p class="card-text">Precio: {{ habitacion.precio }}</p>
+          <p class="card-text">Tipo: {{ habitacion.tipo }}</p>
+          <p class="card-text">Hotel: {{ habitacion.hotel_id }}</p>
+          <p class="card-text">Id: {{ habitacion.id }}</p>
+
+          <button
+            class="btn btn-danger"
+            (click)="eliminarHabitacion(habitacion.id)"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

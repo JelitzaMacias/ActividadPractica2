@@ -1,0 +1,79 @@
+<nav>
+  <ul>
+    <li><a routerLink="/hotel" href="/hotel">Hotel</a></li>
+    <li><a routerLink="/habitacion" href="/habitacion">Habitación</a></li>
+    <li>
+      <a routerLink="/reservaciones" href="/reservaciones">Reservaciones</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container mt-4">
+  <h2>Agregar Reserva</h2>
+
+  <form (ngSubmit)="agregarReserva()" #hotelForm="ngForm">
+    <div class="form-group">
+      <div>
+        <label for="opcionesSelect">Selecciona una habitacion:</label>
+        <select
+          id="habitacion"
+          name="habitacion"
+          [(ngModel)]="reserva.habitacion_id"
+        >
+          <option *ngFor="let opcion of habitaciones" [value]="opcion.id">
+            {{ opcion.numero }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label for="opcionesSelect">Selecciona un Usuario:</label>
+        <select id="usuario" name="usuario" [(ngModel)]="reserva.usuario_id">
+          <option *ngFor="let opcion of usuarios" [value]="opcion.id">
+            {{ opcion.nombre }}
+          </option>
+        </select>
+      </div>
+      <label for="tipo">Fecha Inicio:</label>
+      <input
+        type="date"
+        id="fechaInicio"
+        name="fechaInicio"
+        [(ngModel)]="reserva.fecha_inicio"
+        class="form-control"
+        required
+      />
+
+      <label for="tipo">Fecha Fin:</label>
+      <input
+        type="date"
+        id="fechaFin"
+        name="fechaFin"
+        [(ngModel)]="reserva.fecha_fin"
+        class="form-control"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar Reservacion</button>
+  </form>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    @for (reserva of reservas; track $index) {
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ reserva.usuario_id }}</h5>
+          <p class="card-text">Habitacion Id: {{ reserva.habitacion_id }}</p>
+          <p class="card-text">Fecha Inicio: {{ reserva.fecha_inicio }}</p>
+          <p class="card-text">Fecha Fin: {{ reserva.fecha_fin }}</p>
+
+          <button class="btn btn-danger" (click)="eliminarReserva(reserva.id)">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
